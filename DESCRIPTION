@@ -13,6 +13,7 @@ Description: A Bayesian spatial modelling pipeline that separates ecological
 License: MIT + file LICENSE
 URL: https://github.com/gcol33/scatR
 BugReports: https://github.com/gcol33/scatR/issues
+Lifecycle: experimental
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
