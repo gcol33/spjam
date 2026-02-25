@@ -7,7 +7,7 @@
 scatter_decomposition(fit, locations = NULL, summary = TRUE)
 }
 \arguments{
-\item{fit}{A \code{scatr_fit} object.}
+\item{fit}{A \code{spjam_fit} object.}
 
 \item{locations}{Optional matrix or sf object of locations at which to
 compute the decomposition. Default uses observation locations.}
@@ -16,7 +16,7 @@ compute the decomposition. Default uses observation locations.}
 If FALSE, returns full posterior draws.}
 }
 \value{
-A \code{scatr_decomposition} object containing:
+A \code{spjam_decomposition} object containing:
 \item{ecological}{Spatial structure attributable to ecology only}
 \item{sampling}{Spatial structure attributable to sampling only}
 \item{shared}{Shared structure (the confounding)}
@@ -27,16 +27,4 @@ A \code{scatr_decomposition} object containing:
 Decomposes the fitted spatial surface into ecological-only, sampling-only,
 and shared components. This is the primary diagnostic for understanding
 how much spatial structure is attributable to preferential sampling.
-}
-\examples{
-\dontrun{
-decomp <- scatter_decomposition(fit)
-plot(decomp)
-
-# Variance partitioning
-decomp$variance_partition
-# ecological_only: 0.42
-# sampling_only:   0.24
-# shared:          0.34
-}
 }

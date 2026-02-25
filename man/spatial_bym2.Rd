@@ -12,7 +12,7 @@ spatial_bym2(adjacency = NULL, phi_prior = NULL)
 \item{phi_prior}{Prior on the mixing parameter (proportion structured).}
 }
 \value{
-A \code{scatr_spatial} object of type "bym2".
+A \code{spjam_spatial} object of type "bym2".
 }
 \description{
 Specifies a BYM2 (Besag-York-Mollié 2) spatial effect combining

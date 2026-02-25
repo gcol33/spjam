@@ -1,7 +1,7 @@
 #' Specify Prior Distributions
 #'
 #' @description
-#' Creates a prior specification object for scatR models.
+#' Creates a prior specification object for spjam models.
 #'
 #' @param beta Prior for fixed effect coefficients.
 #' @param intercept Prior for intercept terms.
@@ -10,10 +10,10 @@
 #' @param coupling Prior for shared structure coupling (β_share).
 #' @param phi Prior for overdispersion or mixing parameters.
 #'
-#' @return A \code{scatr_priors} object.
+#' @return A \code{spjam_priors} object.
 #'
 #' @export
-scatr_priors <- function(beta = prior_normal(0, 2.5),
+spjam_priors <- function(beta = prior_normal(0, 2.5),
                           intercept = prior_normal(0, 10),
                           range = NULL,
                           sigma = prior_half_normal(0, 1),
@@ -28,7 +28,7 @@ scatr_priors <- function(beta = prior_normal(0, 2.5),
       coupling = coupling,
       phi = phi
     ),
-    class = "scatr_priors"
+    class = "spjam_priors"
   )
 }
 
@@ -37,12 +37,12 @@ scatr_priors <- function(beta = prior_normal(0, 2.5),
 #' @param mean Mean of the normal distribution.
 #' @param sd Standard deviation.
 #'
-#' @return A \code{scatr_prior} object.
+#' @return A \code{spjam_prior} object.
 #' @export
 prior_normal <- function(mean = 0, sd = 1) {
   structure(
     list(type = "normal", mean = mean, sd = sd),
-    class = "scatr_prior"
+    class = "spjam_prior"
   )
 }
 
@@ -51,12 +51,12 @@ prior_normal <- function(mean = 0, sd = 1) {
 #' @param mean Location (typically 0).
 #' @param sd Scale parameter.
 #'
-#' @return A \code{scatr_prior} object.
+#' @return A \code{spjam_prior} object.
 #' @export
 prior_half_normal <- function(mean = 0, sd = 1) {
   structure(
     list(type = "half_normal", mean = mean, sd = sd),
-    class = "scatr_prior"
+    class = "spjam_prior"
   )
 }
 
@@ -65,12 +65,12 @@ prior_half_normal <- function(mean = 0, sd = 1) {
 #' @param location Location parameter (typically 0).
 #' @param scale Scale parameter.
 #'
-#' @return A \code{scatr_prior} object.
+#' @return A \code{spjam_prior} object.
 #' @export
 prior_half_cauchy <- function(location = 0, scale = 1) {
   structure(
     list(type = "half_cauchy", location = location, scale = scale),
-    class = "scatr_prior"
+    class = "spjam_prior"
   )
 }
 
@@ -83,12 +83,12 @@ prior_half_cauchy <- function(location = 0, scale = 1) {
 #' @param U Upper bound for range.
 #' @param alpha Tail probability.
 #'
-#' @return A \code{scatr_prior} object.
+#' @return A \code{spjam_prior} object.
 #' @export
 prior_pc_range <- function(U, alpha = 0.5) {
   structure(
     list(type = "pc_range", U = U, alpha = alpha),
-    class = "scatr_prior"
+    class = "spjam_prior"
   )
 }
 
@@ -101,24 +101,24 @@ prior_pc_range <- function(U, alpha = 0.5) {
 #' @param U Upper bound.
 #' @param alpha Tail probability.
 #'
-#' @return A \code{scatr_prior} object.
+#' @return A \code{spjam_prior} object.
 #' @export
 prior_pc_sigma <- function(U, alpha = 0.5) {
   structure(
     list(type = "pc_sigma", U = U, alpha = alpha),
-    class = "scatr_prior"
+    class = "spjam_prior"
   )
 }
 
 #' @export
-print.scatr_prior <- function(x, ...) {
+print.spjam_prior <- function(x, ...) {
   cat("Prior:", x$type, "\n")
   invisible(x)
 }
 
 #' @export
-print.scatr_priors <- function(x, ...) {
-  cat("scatR prior specification\n")
+print.spjam_priors <- function(x, ...) {
+  cat("spjam prior specification\n")
   for (nm in names(x)) {
     if (!is.null(x[[nm]])) {
       cat(" ", nm, ":", x[[nm]]$type, "\n")

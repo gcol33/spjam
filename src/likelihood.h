@@ -2,28 +2,28 @@
 // Log-likelihood functions with gradients and Hessians
 // Adapted from numdenom v1.3.0 laplace_core.cpp lines 24-106
 
-#ifndef SCATR_LIKELIHOOD_H
-#define SCATR_LIKELIHOOD_H
+#ifndef SPJAM_LIKELIHOOD_H
+#define SPJAM_LIKELIHOOD_H
 
 #include "linalg_utils.h"
 #include <cmath>
 
-namespace scatr {
+namespace spjam {
 
 // =====================================================================
 // Poisson: y ~ Poisson(mu = exp(eta))
 // =====================================================================
 
 inline double log_lik_poisson(int y, double eta) {
-  return y * eta - scatr_linalg::safe_exp(eta) - R::lgammafn(y + 1.0);
+  return y * eta - spjam_linalg::safe_exp(eta) - R::lgammafn(y + 1.0);
 }
 
 inline double grad_log_lik_poisson(int y, double eta) {
-  return y - scatr_linalg::safe_exp(eta);
+  return y - spjam_linalg::safe_exp(eta);
 }
 
 inline double neg_hess_log_lik_poisson(int y, double eta) {
-  return scatr_linalg::safe_exp(eta);
+  return spjam_linalg::safe_exp(eta);
 }
 
 // =====================================================================
@@ -32,20 +32,20 @@ inline double neg_hess_log_lik_poisson(int y, double eta) {
 // =====================================================================
 
 inline double log_lik_negbin(int y, double eta, double phi) {
-  double mu = scatr_linalg::safe_exp(eta);
+  double mu = spjam_linalg::safe_exp(eta);
   return R::lgammafn(y + phi) - R::lgammafn(phi) - R::lgammafn(y + 1.0)
        + phi * std::log(phi / (mu + phi))
        + y * std::log(mu / (mu + phi));
 }
 
 inline double grad_log_lik_negbin(int y, double eta, double phi) {
-  double mu = scatr_linalg::safe_exp(eta);
+  double mu = spjam_linalg::safe_exp(eta);
   double p = mu / (mu + phi);
   return y - (y + phi) * p;
 }
 
 inline double neg_hess_log_lik_negbin(int y, double eta, double phi) {
-  double mu = scatr_linalg::safe_exp(eta);
+  double mu = spjam_linalg::safe_exp(eta);
   double denom = mu + phi;
   return (y + phi) * mu * phi / (denom * denom);
 }
@@ -114,6 +114,6 @@ inline double compute_log_lik(const std::string& family, int y, int n_trials,
   return 0.0;
 }
 
-} // namespace scatr
+} // namespace spjam
 
-#endif // SCATR_LIKELIHOOD_H
+#endif // SPJAM_LIKELIHOOD_H

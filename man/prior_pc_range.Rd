@@ -12,7 +12,7 @@ prior_pc_range(U, alpha = 0.5)
 \item{alpha}{Tail probability.}
 }
 \value{
-A \code{scatr_prior} object.
+A \code{spjam_prior} object.
 }
 \description{
 Penalized complexity prior for the practical range of a spatial process.

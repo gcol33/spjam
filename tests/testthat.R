@@ -1,6 +1,6 @@
-# Run tests for scatR package
+# Run tests for spjam package
 
 library(testthat)
-library(scatR)
+library(spjam)
 
-test_check("scatR")
+test_check("spjam")

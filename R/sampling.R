@@ -9,7 +9,7 @@
 #'   integral. Default 1000.
 #' @param boundary An sf polygon defining the study region boundary.
 #'
-#' @return A \code{scatr_sampling} object of type "lgcp".
+#' @return A \code{spjam_sampling} object of type "lgcp".
 #'
 #' @export
 sampling_lgcp <- function(integration_points = 1000, boundary = NULL) {
@@ -19,7 +19,7 @@ sampling_lgcp <- function(integration_points = 1000, boundary = NULL) {
       integration_points = integration_points,
       boundary = boundary
     ),
-    class = c("scatr_sampling_lgcp", "scatr_sampling")
+    class = c("spjam_sampling_lgcp", "spjam_sampling")
   )
 }
 
@@ -31,7 +31,7 @@ sampling_lgcp <- function(integration_points = 1000, boundary = NULL) {
 #'
 #' @param intensity_formula Formula for the log-intensity.
 #'
-#' @return A \code{scatr_sampling} object of type "point".
+#' @return A \code{spjam_sampling} object of type "point".
 #'
 #' @export
 sampling_point <- function(intensity_formula = ~ 1) {
@@ -40,7 +40,7 @@ sampling_point <- function(intensity_formula = ~ 1) {
       type = "point",
       intensity_formula = intensity_formula
     ),
-    class = c("scatr_sampling_point", "scatr_sampling")
+    class = c("spjam_sampling_point", "spjam_sampling")
   )
 }
 
@@ -53,7 +53,7 @@ sampling_point <- function(intensity_formula = ~ 1) {
 #' @param grid An sf or terra object defining the sampling grid.
 #' @param effort Optional known effort variable name in data.
 #'
-#' @return A \code{scatr_sampling} object of type "binomial".
+#' @return A \code{spjam_sampling} object of type "binomial".
 #'
 #' @export
 sampling_binomial <- function(grid = NULL, effort = NULL) {
@@ -63,12 +63,12 @@ sampling_binomial <- function(grid = NULL, effort = NULL) {
       grid = grid,
       effort = effort
     ),
-    class = c("scatr_sampling_binomial", "scatr_sampling")
+    class = c("spjam_sampling_binomial", "spjam_sampling")
   )
 }
 
 #' @export
-print.scatr_sampling <- function(x, ...) {
-  cat("scatR sampling specification:", x$type, "\n")
+print.spjam_sampling <- function(x, ...) {
+  cat("spjam sampling specification:", x$type, "\n")
   invisible(x)
 }

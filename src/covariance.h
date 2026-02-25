@@ -2,12 +2,12 @@
 // Matern covariance functions for Gaussian process spatial models
 // Adapted from numdenom v1.3.0 hmc_svc.h
 
-#ifndef SCATR_COVARIANCE_H
-#define SCATR_COVARIANCE_H
+#ifndef SPJAM_COVARIANCE_H
+#define SPJAM_COVARIANCE_H
 
 #include <cmath>
 
-namespace scatr {
+namespace spjam {
 
 // Exponential covariance (Matern nu = 0.5)
 // C(d) = sigma^2 * exp(-d / range)
@@ -58,6 +58,6 @@ inline void build_cov_matrix(const double* coords, int n,
   }
 }
 
-} // namespace scatr
+} // namespace spjam
 
-#endif // SCATR_COVARIANCE_H
+#endif // SPJAM_COVARIANCE_H

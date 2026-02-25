@@ -1,30 +1,30 @@
-# scatR
+# spjam
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/gcol33/scatR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gcol33/scatR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **Joint spatial modelling of ecological processes under preferential sampling**
 
 Spatial ecological data rarely represent where ecological processes truly occur. Instead, they reflect where observers choose or are able to sample. When sampling locations are non-random and correlated with the ecological process, standard spatial models confound sampling structure with ecological signal, producing biased maps that appear plausible but are structurally wrong.
 
-scatR addresses this by jointly modelling sampling and ecology as two coupled spatial processes.
+spjam addresses this by jointly modelling sampling and ecology as two coupled spatial processes.
 
 ## Installation
 
 ```r
 # install.packages("pak")
-pak::pak("gcol33/scatR")
+pak::pak("gcol33/spjam")
 ```
 
 ## Core idea
 
-Observed spatial patterns are *scattered* versions of the true ecological process. Sampling acts as a distortion operator, redistributing observations toward accessible regions. scatR explicitly models this scattering, allowing the underlying ecological surface to be inferred separately from sampling behaviour.
+Observed spatial patterns are *scattered* versions of the true ecological process. Sampling acts as a distortion operator, redistributing observations toward accessible regions. spjam explicitly models this scattering, allowing the underlying ecological surface to be inferred separately from sampling behavior.
 
 ## Modelling framework
 
-scatR implements a Bayesian hierarchical pipeline with:
+spjam implements a Bayesian hierarchical pipeline with:
 
 - A **latent ecological spatial process**
 - A **latent sampling intensity process**
@@ -36,10 +36,10 @@ The result is a sampling-adjusted ecological surface that reflects where the pro
 ## Usage
 
 ```r
-library(scatR)
+library(spjam)
 
 # Fit joint model
-fit <- scatr(
+fit <- spjam(
 
 abundance ~ elevation + forest_cover,
   sampling = ~ road_distance + population_density,
@@ -60,9 +60,9 @@ plot(decomp)
 predict(fit, newdata = grid, type = "ecological")
 ```
 
-## How scatR differs from existing approaches
+## How spjam differs from existing approaches
 
-| Approach | Assumption | Problem | scatR solution |
+| Approach | Assumption | Problem | spjam solution |
 |----------|------------|---------|----------------|
 | **Spatial GLMMs/GAMs** | Sampling locations exogenous | Random effects absorb bias, not signal | Models sampling explicitly |
 | **Bias covariates** | Proxies capture effort | Incomplete; residual bias remains | Treats sampling as spatial process |
@@ -71,9 +71,9 @@ predict(fit, newdata = grid, type = "ecological")
 
 ## Positioning
 
-scatR is not a general-purpose spatial modelling framework. It is a deliberately constrained pipeline for situations where sampling and ecology are entangled—analogous to how occupancy models formalize detection bias.
+spjam is not a general-purpose spatial modelling framework. It is a deliberately constrained pipeline for situations where sampling and ecology are entangled—analogous to how occupancy models formalize detection bias.
 
-**spOccupancy** models imperfect detection conditional on sampled sites (separating presence from detection). **scatR** addresses a different but equally fundamental bias: non-random sampling locations. Where spOccupancy corrects for failure to detect organisms at sampled sites, scatR corrects for the fact that the sites themselves are not a random sample of space.
+**spOccupancy** models imperfect detection conditional on sampled sites (separating presence from detection). **spjam** addresses a different but equally fundamental bias: non-random sampling locations. Where spOccupancy corrects for failure to detect organisms at sampled sites, spjam corrects for the fact that the sites themselves are not a random sample of space.
 
 ## Status
 

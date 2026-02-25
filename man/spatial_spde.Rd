@@ -14,7 +14,7 @@ spatial_spde(mesh = NULL, range_prior = NULL, sigma_prior = NULL)
 \item{sigma_prior}{Prior on the marginal standard deviation.}
 }
 \value{
-A \code{scatr_spatial} object of type "spde".
+A \code{spjam_spatial} object of type "spde".
 }
 \description{
 Specifies an SPDE (stochastic partial differential equation) approximation

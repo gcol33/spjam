@@ -7,10 +7,10 @@
 mcmc_diagnostics(fit)
 }
 \arguments{
-\item{fit}{A \code{scatr_fit} object.}
+\item{fit}{A \code{spjam_fit} object.}
 }
 \value{
-A \code{scatr_diagnostics} object.
+A \code{spjam_diagnostics} object.
 }
 \description{
 Computes standard MCMC diagnostics including Rhat, effective sample size,

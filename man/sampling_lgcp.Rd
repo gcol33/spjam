@@ -13,7 +13,7 @@ integral. Default 1000.}
 \item{boundary}{An sf polygon defining the study region boundary.}
 }
 \value{
-A \code{scatr_sampling} object of type "lgcp".
+A \code{spjam_sampling} object of type "lgcp".
 }
 \description{
 Specifies a log-Gaussian Cox process (LGCP) model for the sampling

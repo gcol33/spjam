@@ -9,7 +9,7 @@ prepare_spatial_structure <- function(spatial, model_data) {
 }
 
 #' @keywords internal
-prepare_spatial_structure.scatr_spatial_gp <- function(spatial, model_data) {
+prepare_spatial_structure.spjam_spatial_gp <- function(spatial, model_data) {
   locs <- model_data$unique_locations
   n <- nrow(locs)
   nu <- spatial$nu
@@ -36,7 +36,7 @@ prepare_spatial_structure.scatr_spatial_gp <- function(spatial, model_data) {
 }
 
 #' @keywords internal
-prepare_spatial_structure.scatr_spatial_car <- function(spatial, model_data) {
+prepare_spatial_structure.spjam_spatial_car <- function(spatial, model_data) {
   adj <- spatial$adjacency
 
   # Convert adjacency to CSR format
@@ -62,7 +62,7 @@ prepare_spatial_structure.scatr_spatial_car <- function(spatial, model_data) {
 }
 
 #' @keywords internal
-prepare_spatial_structure.scatr_spatial_bym2 <- function(spatial, model_data) {
+prepare_spatial_structure.spjam_spatial_bym2 <- function(spatial, model_data) {
   adj <- spatial$adjacency
 
   csr <- adjacency_to_csr(adj)
@@ -90,7 +90,7 @@ prepare_spatial_structure.scatr_spatial_bym2 <- function(spatial, model_data) {
 }
 
 #' @keywords internal
-prepare_spatial_structure.scatr_spatial_spde <- function(spatial, model_data) {
+prepare_spatial_structure.spjam_spatial_spde <- function(spatial, model_data) {
   locs <- model_data$unique_locations
   n <- nrow(locs)
 

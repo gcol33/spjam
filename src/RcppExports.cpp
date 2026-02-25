@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // cpp_joint_laplace_fit
 Rcpp::List cpp_joint_laplace_fit(Rcpp::IntegerVector y, Rcpp::IntegerVector n_trials, Rcpp::NumericMatrix X_eco, std::string family, double phi_overdispersion, Rcpp::NumericMatrix Z_samp, Rcpp::NumericMatrix Z_quad, Rcpp::NumericVector quad_weights, Rcpp::IntegerVector quad_spatial_idx, int spatial_type, Rcpp::IntegerVector obs_spatial_idx, Rcpp::NumericVector gp_L_shared_flat, Rcpp::NumericVector gp_L_eco_flat, Rcpp::NumericVector gp_L_samp_flat, Rcpp::IntegerVector adj_row_ptr, Rcpp::IntegerVector adj_col_idx, Rcpp::IntegerVector n_neighbors_vec, double tau_shared, double tau_eco, double tau_samp, Rcpp::IntegerVector spde_Q_row_ptr, Rcpp::IntegerVector spde_Q_col_idx, Rcpp::NumericVector spde_Q_shared_vals, Rcpp::NumericVector spde_Q_eco_vals, Rcpp::NumericVector spde_Q_samp_vals, int latent_type, double beta_share, int p_eco, int p_samp, int n_spatial, double tau_beta, int max_iter, double tol);
-RcppExport SEXP _scatR_cpp_joint_laplace_fit(SEXP ySEXP, SEXP n_trialsSEXP, SEXP X_ecoSEXP, SEXP familySEXP, SEXP phi_overdispersionSEXP, SEXP Z_sampSEXP, SEXP Z_quadSEXP, SEXP quad_weightsSEXP, SEXP quad_spatial_idxSEXP, SEXP spatial_typeSEXP, SEXP obs_spatial_idxSEXP, SEXP gp_L_shared_flatSEXP, SEXP gp_L_eco_flatSEXP, SEXP gp_L_samp_flatSEXP, SEXP adj_row_ptrSEXP, SEXP adj_col_idxSEXP, SEXP n_neighbors_vecSEXP, SEXP tau_sharedSEXP, SEXP tau_ecoSEXP, SEXP tau_sampSEXP, SEXP spde_Q_row_ptrSEXP, SEXP spde_Q_col_idxSEXP, SEXP spde_Q_shared_valsSEXP, SEXP spde_Q_eco_valsSEXP, SEXP spde_Q_samp_valsSEXP, SEXP latent_typeSEXP, SEXP beta_shareSEXP, SEXP p_ecoSEXP, SEXP p_sampSEXP, SEXP n_spatialSEXP, SEXP tau_betaSEXP, SEXP max_iterSEXP, SEXP tolSEXP) {
+RcppExport SEXP _spjam_cpp_joint_laplace_fit(SEXP ySEXP, SEXP n_trialsSEXP, SEXP X_ecoSEXP, SEXP familySEXP, SEXP phi_overdispersionSEXP, SEXP Z_sampSEXP, SEXP Z_quadSEXP, SEXP quad_weightsSEXP, SEXP quad_spatial_idxSEXP, SEXP spatial_typeSEXP, SEXP obs_spatial_idxSEXP, SEXP gp_L_shared_flatSEXP, SEXP gp_L_eco_flatSEXP, SEXP gp_L_samp_flatSEXP, SEXP adj_row_ptrSEXP, SEXP adj_col_idxSEXP, SEXP n_neighbors_vecSEXP, SEXP tau_sharedSEXP, SEXP tau_ecoSEXP, SEXP tau_sampSEXP, SEXP spde_Q_row_ptrSEXP, SEXP spde_Q_col_idxSEXP, SEXP spde_Q_shared_valsSEXP, SEXP spde_Q_eco_valsSEXP, SEXP spde_Q_samp_valsSEXP, SEXP latent_typeSEXP, SEXP beta_shareSEXP, SEXP p_ecoSEXP, SEXP p_sampSEXP, SEXP n_spatialSEXP, SEXP tau_betaSEXP, SEXP max_iterSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -56,7 +56,7 @@ END_RCPP
 }
 // cpp_joint_laplace_sample
 Rcpp::NumericMatrix cpp_joint_laplace_sample(Rcpp::NumericVector mode, Rcpp::NumericVector L_flat, int n_params, int n_samples, int seed);
-RcppExport SEXP _scatR_cpp_joint_laplace_sample(SEXP modeSEXP, SEXP L_flatSEXP, SEXP n_paramsSEXP, SEXP n_samplesSEXP, SEXP seedSEXP) {
+RcppExport SEXP _spjam_cpp_joint_laplace_sample(SEXP modeSEXP, SEXP L_flatSEXP, SEXP n_paramsSEXP, SEXP n_samplesSEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -69,25 +69,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// scatr_hmc_placeholder
-Rcpp::List scatr_hmc_placeholder();
-RcppExport SEXP _scatR_scatr_hmc_placeholder() {
+// spjam_hmc_placeholder
+Rcpp::List spjam_hmc_placeholder();
+RcppExport SEXP _spjam_spjam_hmc_placeholder() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(scatr_hmc_placeholder());
+    rcpp_result_gen = Rcpp::wrap(spjam_hmc_placeholder());
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_scatR_cpp_joint_laplace_fit", (DL_FUNC) &_scatR_cpp_joint_laplace_fit, 33},
-    {"_scatR_cpp_joint_laplace_sample", (DL_FUNC) &_scatR_cpp_joint_laplace_sample, 5},
-    {"_scatR_scatr_hmc_placeholder", (DL_FUNC) &_scatR_scatr_hmc_placeholder, 0},
+    {"_spjam_cpp_joint_laplace_fit", (DL_FUNC) &_spjam_cpp_joint_laplace_fit, 33},
+    {"_spjam_cpp_joint_laplace_sample", (DL_FUNC) &_spjam_cpp_joint_laplace_sample, 5},
+    {"_spjam_spjam_hmc_placeholder", (DL_FUNC) &_spjam_spjam_hmc_placeholder, 0},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_scatR(DllInfo *dll) {
+RcppExport void R_init_spjam(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

@@ -10,7 +10,7 @@ sampling_point(intensity_formula = ~1)
 \item{intensity_formula}{Formula for the log-intensity.}
 }
 \value{
-A \code{scatr_sampling} object of type "point".
+A \code{spjam_sampling} object of type "point".
 }
 \description{
 Specifies an inhomogeneous Poisson point process model for sampling

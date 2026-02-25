@@ -1,11 +1,11 @@
-#' Validate inputs to scatr()
+#' Validate inputs to spjam()
 #' @keywords internal
-validate_scatr_inputs <- function(formula, data, locations, family,
+validate_spjam_inputs <- function(formula, data, locations, family,
                                    spatial, shared, sampling_spec) {
   # Formula
 
-  if (!inherits(formula, "scatr_formula")) {
-    stop("'formula' must be a scatr_formula object", call. = FALSE)
+  if (!inherits(formula, "spjam_formula")) {
+    stop("'formula' must be a spjam_formula object", call. = FALSE)
   }
 
   # Data
@@ -45,20 +45,20 @@ validate_scatr_inputs <- function(formula, data, locations, family,
   }
 
   # Family
-  if (!inherits(family, "scatr_family")) {
-    stop("'family' must be a scatr_family object", call. = FALSE)
+  if (!inherits(family, "spjam_family")) {
+    stop("'family' must be a spjam_family object", call. = FALSE)
   }
 
   # Spatial
-  if (!inherits(spatial, "scatr_spatial")) {
-    stop("'spatial' must be a scatr_spatial object (spatial_gp, spatial_car, etc.)",
+  if (!inherits(spatial, "spjam_spatial")) {
+    stop("'spatial' must be a spjam_spatial object (spatial_gp, spatial_car, etc.)",
          call. = FALSE)
   }
 
   # Shared/latent
 
-  if (!inherits(shared, "scatr_latent")) {
-    stop("'shared' must be a scatr_latent object (latent_shared, latent_independent, etc.)",
+  if (!inherits(shared, "spjam_latent")) {
+    stop("'shared' must be a spjam_latent object (latent_shared, latent_independent, etc.)",
          call. = FALSE)
   }
 
@@ -79,8 +79,8 @@ validate_scatr_inputs <- function(formula, data, locations, family,
   }
 
   # CAR/BYM2 require adjacency
-  if (inherits(spatial, "scatr_spatial_car") ||
-      inherits(spatial, "scatr_spatial_bym2")) {
+  if (inherits(spatial, "spjam_spatial_car") ||
+      inherits(spatial, "spjam_spatial_bym2")) {
     adj <- spatial$adjacency
     if (is.null(adj)) {
       stop("spatial_car() and spatial_bym2() require an adjacency matrix",

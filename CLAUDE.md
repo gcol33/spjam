@@ -1,4 +1,4 @@
-# scatR Development Guide
+# spjam Development Guide
 
 ## Package Overview
 
@@ -9,9 +9,9 @@ Bayesian hierarchical model with Laplace approximation backend, C++ engine adapt
 
 **Baseline version:** numdenom v1.3.0 (audited 2026-02-25)
 
-C++ code adapted from numdenom into scatr:
+C++ code adapted from numdenom into spjam:
 
-| scatr file | numdenom source | What was adapted |
+| spjam file | numdenom source | What was adapted |
 |---|---|---|
 | `src/likelihood.h` | `src/laplace_core.cpp` lines 24-106 | Poisson, negbin, binomial log-lik + grad + neg_hess |
 | `src/linalg_utils.h` | `src/linalg_fast.h` subset | safe_exp, dot_product, sparse triangular solves |
@@ -39,7 +39,7 @@ devtools::check()
 ## Architecture
 
 ```
-User API: scatr() → validate → prepare_data → prepare_spatial → backend_laplace → C++ engine → scatr_fit
+User API: spjam() → validate → prepare_data → prepare_spatial → backend_laplace → C++ engine → spjam_fit
 ```
 
 **Outer loop (R):** Hyperparameter optimization via `optim(method="L-BFGS-B")`
@@ -50,7 +50,7 @@ User API: scatr() → validate → prepare_data → prepare_spatial → backend_
 
 ## Naming Conventions
 
-- R functions: camelCase for exported (`scatr`, `scatrFormula`), snake_case for internal (`prepare_model_data`)
+- R functions: camelCase for exported (`spjam`, `spjamFormula`), snake_case for internal (`prepare_model_data`)
 - C++ functions: snake_case (`joint_laplace_mode`)
 - C++ structs: PascalCase (`JointModelData`)
 - C++ constants: kPascalCase (`kMaxNewtonIter`)

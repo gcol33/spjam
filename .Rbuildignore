@@ -10,3 +10,4 @@
 ^\.lintr$
 ^\.vscode$
 ^CLAUDE\.md$
+^cran-comments\.md$

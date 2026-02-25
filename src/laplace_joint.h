@@ -2,14 +2,14 @@
 // Joint Laplace approximation for preferential sampling models
 // Core data structures and function declarations
 
-#ifndef SCATR_LAPLACE_JOINT_H
-#define SCATR_LAPLACE_JOINT_H
+#ifndef SPJAM_LAPLACE_JOINT_H
+#define SPJAM_LAPLACE_JOINT_H
 
 #include <Rcpp.h>
 #include <vector>
 #include <string>
 
-namespace scatr {
+namespace spjam {
 
 // Spatial type enumeration
 enum SpatialType {
@@ -115,6 +115,6 @@ JointLaplaceResult joint_laplace_mode(
     double tol
 );
 
-} // namespace scatr
+} // namespace spjam
 
-#endif // SCATR_LAPLACE_JOINT_H
+#endif // SPJAM_LAPLACE_JOINT_H

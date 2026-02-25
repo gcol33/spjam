@@ -1,4 +1,4 @@
-# scatR Implementation Roadmap
+# spjam Implementation Roadmap
 
 **From proof-of-concept to production-ready release**
 
@@ -6,7 +6,7 @@
 
 ## Design Philosophy
 
-scatR is an opinionated pipeline, not a framework. Every design decision prioritizes:
+spjam is an opinionated pipeline, not a framework. Every design decision prioritizes:
 
 1. **Identifiability over flexibility** — structure is enforced, not optional
 2. **Honest inference** — flag what cannot be distinguished rather than pretend
@@ -42,21 +42,21 @@ scatR is an opinionated pipeline, not a framework. Every design decision priorit
 - [x] DESCRIPTION, NAMESPACE, LICENSE
 - [x] Directory structure: `R/`, `src/`, `tests/`, `inst/`, `man/`, `vignettes/`
 - [x] Core function stubs with roxygen skeletons
-- [ ] C++ skeleton: `src/scatr_init.cpp`, Makevars
+- [ ] C++ skeleton: `src/spjam_init.cpp`, Makevars
 - [ ] Basic test infrastructure with testthat
 - [ ] GitHub Actions for R CMD check
 
 **Files created:**
 ```
-R/scatR-package.R      # Package documentation
-R/scatr.R              # Main fitting function
+R/spjam-package.R      # Package documentation
+R/spjam.R              # Main fitting function
 R/formula.R            # Formula parsing (stub)
 R/family.R             # Family definitions (stub)
 R/priors.R             # Prior system (stub)
 R/spatial.R            # Spatial specifications (stub)
 R/sampling.R           # Sampling process specs (stub)
 R/latent.R             # Shared structure specs (stub)
-src/scatr_init.cpp     # C++ registration
+src/spjam_init.cpp     # C++ registration
 src/Makevars           # Compilation flags
 ```
 
@@ -86,7 +86,7 @@ src/Makevars           # Compilation flags
 - Verify posterior recovery
 - Benchmark against reference implementation
 
-**Deliverable:** `scatr(y ~ 1, spatial = spatial_gp())` produces valid posterior samples for a single spatial process.
+**Deliverable:** `spjam(y ~ 1, spatial = spatial_gp())` produces valid posterior samples for a single spatial process.
 
 ---
 
@@ -170,11 +170,11 @@ Where `β_share` measures the coupling between sampling and ecology.
 - Abundance with zeros (zero-inflated, hurdle)
 
 **Family extensions:**
-- `scatr_family("poisson")`: Count data
-- `scatr_family("binomial")`: Presence/absence
-- `scatr_family("negbin")`: Overdispersed counts
-- `scatr_family("tweedie")`: Biomass, density
-- `scatr_family("zi_poisson")`: Zero-inflated Poisson
+- `spjam_family("poisson")`: Count data
+- `spjam_family("binomial")`: Presence/absence
+- `spjam_family("negbin")`: Overdispersed counts
+- `spjam_family("tweedie")`: Biomass, density
+- `spjam_family("zi_poisson")`: Zero-inflated Poisson
 
 **Alternative spatial specifications:**
 - `spatial_gp()`: Full Gaussian process (small n)
@@ -259,9 +259,9 @@ fitted(fit, type = "sampling")    # Sampling intensity at locations
 
 **Backend selection:**
 ```r
-scatr(..., backend = "auto")     # Selects based on n and model complexity
-scatr(..., backend = "hmc")      # Full MCMC (default)
-scatr(..., backend = "laplace")  # Fast approximate inference
+spjam(..., backend = "auto")     # Selects based on n and model complexity
+spjam(..., backend = "hmc")      # Full MCMC (default)
+spjam(..., backend = "laplace")  # Fast approximate inference
 ```
 
 **SPDE optimizations:**
@@ -308,13 +308,13 @@ scatr(..., backend = "laplace")  # Fast approximate inference
 **Objective:** Comprehensive user guidance.
 
 **Vignettes:**
-1. `introduction.Rmd`: What is preferential sampling, why scatR?
+1. `introduction.Rmd`: What is preferential sampling, why spjam?
 2. `getting-started.Rmd`: First model in 10 minutes
 3. `model-specification.Rmd`: Formula, family, spatial, sampling options
 4. `interpretation.Rmd`: Understanding output, decomposition, prediction
 5. `case-study-species.Rmd`: Full worked example with species distribution data
 6. `case-study-disease.Rmd`: Epidemiological application
-7. `comparison.Rmd`: scatR vs. standard spatial models, when to use each
+7. `comparison.Rmd`: spjam vs. standard spatial models, when to use each
 8. `troubleshooting.Rmd`: Common issues and solutions
 
 **Function documentation:**
@@ -330,7 +330,7 @@ scatr(..., backend = "laplace")  # Fast approximate inference
 **Simulation study:**
 - Reproducible code for validating the method
 - Comparison with alternative approaches
-- Guidance on when scatR helps/doesn't help
+- Guidance on when spjam helps/doesn't help
 
 ---
 
@@ -373,10 +373,10 @@ scatr(..., backend = "laplace")  # Fast approximate inference
 ### Core Workflow
 
 ```r
-library(scatR)
+library(spjam)
 
 # 1. Fit joint model
-fit <- scatr(
+fit <- spjam(
   # Ecological process
   abundance ~ elevation + forest_cover + (1 | region),
   # Sampling process
@@ -488,7 +488,7 @@ pp_check(fit)                        # Posterior predictive checks
 
 3. **Discrete vs. continuous space**: How to handle presence-only data where "sampling locations" aren't explicit?
 
-4. **Comparison framework**: Should scatR include built-in comparison with naive models (no preferential sampling correction)?
+4. **Comparison framework**: Should spjam include built-in comparison with naive models (no preferential sampling correction)?
 
 5. **Multiple species**: Extension to joint species distribution models with shared sampling? (Post-1.0)
 

@@ -14,7 +14,7 @@ weakly informative prior centered at zero.}
 positive (sampling increases where ecology is high). Default FALSE.}
 }
 \value{
-A \code{scatr_latent} object of type "shared".
+A \code{spjam_latent} object of type "shared".
 }
 \description{
 Specifies a shared latent spatial component between the ecological and

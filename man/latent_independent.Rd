@@ -7,7 +7,7 @@
 latent_independent()
 }
 \value{
-A \code{scatr_latent} object of type "independent".
+A \code{spjam_latent} object of type "independent".
 }
 \description{
 Specifies independent spatial processes for ecology and sampling with

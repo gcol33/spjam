@@ -12,7 +12,7 @@ prior_half_normal(mean = 0, sd = 1)
 \item{sd}{Scale parameter.}
 }
 \value{
-A \code{scatr_prior} object.
+A \code{spjam_prior} object.
 }
 \description{
 Half-Normal Prior

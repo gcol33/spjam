@@ -1,15 +1,15 @@
-#' scatr_fit S3 class
+#' spjam_fit S3 class
 #'
-#' Output of [scatr()] containing posterior draws, model specifications,
+#' Output of [spjam()] containing posterior draws, model specifications,
 #' and diagnostics from the Laplace approximation.
 #'
-#' @name scatr_fit
+#' @name spjam_fit
 #' @keywords internal
 NULL
 
-#' Construct a scatr_fit object
+#' Construct a spjam_fit object
 #' @keywords internal
-new_scatr_fit <- function(laplace_result, formula, family, spatial, shared,
+new_spjam_fit <- function(laplace_result, formula, family, spatial, shared,
                            priors, data, locations, model_data, spatial_info,
                            backend, seed) {
   structure(
@@ -38,13 +38,13 @@ new_scatr_fit <- function(laplace_result, formula, family, spatial, shared,
         seed = seed
       )
     ),
-    class = "scatr_fit"
+    class = "spjam_fit"
   )
 }
 
 #' @export
-print.scatr_fit <- function(x, ...) {
-  cat("scatR model fit\n")
+print.spjam_fit <- function(x, ...) {
+  cat("spjam model fit\n")
   cat("  Family:     ", x$family$family, "(", x$family$link, ")\n")
   cat("  Spatial:    ", x$spatial$type, "\n")
   cat("  Latent:     ", x$shared$type, "\n")
@@ -97,7 +97,7 @@ print.scatr_fit <- function(x, ...) {
 }
 
 #' @export
-summary.scatr_fit <- function(object, ...) {
+summary.spjam_fit <- function(object, ...) {
   # Posterior summaries from draws
   draws <- object$draws
   eco_idx <- seq_len(object$p_eco)
@@ -120,7 +120,7 @@ summary.scatr_fit <- function(object, ...) {
   eco_summary <- summarize_params(eco_idx, eco_names)
   samp_summary <- summarize_params(samp_idx, samp_names)
 
-  cat("scatR model summary\n\n")
+  cat("spjam model summary\n\n")
   cat("Ecological process:\n")
   print(eco_summary, digits = 4, row.names = FALSE)
   cat("\nSampling process:\n")
@@ -136,7 +136,7 @@ summary.scatr_fit <- function(object, ...) {
 }
 
 #' @export
-coef.scatr_fit <- function(object, type = c("ecological", "sampling"), ...) {
+coef.spjam_fit <- function(object, type = c("ecological", "sampling"), ...) {
   type <- match.arg(type)
   if (type == "ecological") {
     idx <- seq_len(object$p_eco)
@@ -151,7 +151,7 @@ coef.scatr_fit <- function(object, type = c("ecological", "sampling"), ...) {
 }
 
 #' @export
-logLik.scatr_fit <- function(object, ...) {
+logLik.spjam_fit <- function(object, ...) {
   val <- object$log_marginal
   attr(val, "df") <- length(object$hyperparams)
   attr(val, "nobs") <- object$n_obs

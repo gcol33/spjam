@@ -1,6 +1,6 @@
 #' @keywords internal
 #'
-#' @useDynLib scatR, .registration = TRUE
+#' @useDynLib spjam, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @importFrom methods as
 #' @importFrom Matrix sparseMatrix Diagonal crossprod

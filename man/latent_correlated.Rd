@@ -11,7 +11,7 @@ latent_correlated(rho_prior = NULL)
 uniform on (-1, 1).}
 }
 \value{
-A \code{scatr_latent} object of type "correlated".
+A \code{spjam_latent} object of type "correlated".
 }
 \description{
 Specifies correlated (but not identical) spatial processes for ecology

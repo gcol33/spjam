@@ -12,7 +12,7 @@ spatial_car(adjacency = NULL, type = c("icar", "proper"))
 \item{type}{Type of CAR: "icar" (intrinsic) or "proper".}
 }
 \value{
-A \code{scatr_spatial} object of type "car".
+A \code{spjam_spatial} object of type "car".
 }
 \description{
 Specifies a conditional autoregressive (CAR) spatial effect for areal data.

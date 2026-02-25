@@ -12,7 +12,7 @@ prior_normal(mean = 0, sd = 1)
 \item{sd}{Standard deviation.}
 }
 \value{
-A \code{scatr_prior} object.
+A \code{spjam_prior} object.
 }
 \description{
 Normal Prior

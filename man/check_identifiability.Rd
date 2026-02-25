@@ -7,13 +7,13 @@
 check_identifiability(fit, threshold = 0.5)
 }
 \arguments{
-\item{fit}{A \code{scatr_fit} object.}
+\item{fit}{A \code{spjam_fit} object.}
 
 \item{threshold}{Posterior width threshold for flagging weak
 identifiability. Default 0.5.}
 }
 \value{
-A \code{scatr_identifiability} object with diagnostic information.
+A \code{spjam_identifiability} object with diagnostic information.
 }
 \description{
 Assesses whether the data can distinguish ecological signal from

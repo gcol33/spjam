@@ -7,7 +7,7 @@
 #' @param sigma_prior Prior on the marginal standard deviation.
 #' @param nu Smoothness parameter (0.5, 1.5, or 2.5). Default 1.5.
 #'
-#' @return A \code{scatr_spatial} object of type "gp".
+#' @return A \code{spjam_spatial} object of type "gp".
 #'
 #' @export
 spatial_gp <- function(range_prior = NULL,
@@ -20,7 +20,7 @@ spatial_gp <- function(range_prior = NULL,
       sigma_prior = sigma_prior,
       nu = nu
     ),
-    class = c("scatr_spatial_gp", "scatr_spatial")
+    class = c("spjam_spatial_gp", "spjam_spatial")
   )
 }
 
@@ -34,7 +34,7 @@ spatial_gp <- function(range_prior = NULL,
 #' @param range_prior Prior on the practical range.
 #' @param sigma_prior Prior on the marginal standard deviation.
 #'
-#' @return A \code{scatr_spatial} object of type "spde".
+#' @return A \code{spjam_spatial} object of type "spde".
 #'
 #' @export
 spatial_spde <- function(mesh = NULL,
@@ -47,7 +47,7 @@ spatial_spde <- function(mesh = NULL,
       range_prior = range_prior,
       sigma_prior = sigma_prior
     ),
-    class = c("scatr_spatial_spde", "scatr_spatial")
+    class = c("spjam_spatial_spde", "spjam_spatial")
   )
 }
 
@@ -59,7 +59,7 @@ spatial_spde <- function(mesh = NULL,
 #' @param adjacency Adjacency matrix or neighborhood list.
 #' @param type Type of CAR: "icar" (intrinsic) or "proper".
 #'
-#' @return A \code{scatr_spatial} object of type "car".
+#' @return A \code{spjam_spatial} object of type "car".
 #'
 #' @export
 spatial_car <- function(adjacency = NULL, type = c("icar", "proper")) {
@@ -70,7 +70,7 @@ spatial_car <- function(adjacency = NULL, type = c("icar", "proper")) {
       car_type = type,
       adjacency = adjacency
     ),
-    class = c("scatr_spatial_car", "scatr_spatial")
+    class = c("spjam_spatial_car", "spjam_spatial")
   )
 }
 
@@ -83,7 +83,7 @@ spatial_car <- function(adjacency = NULL, type = c("icar", "proper")) {
 #' @param adjacency Adjacency matrix or neighborhood list.
 #' @param phi_prior Prior on the mixing parameter (proportion structured).
 #'
-#' @return A \code{scatr_spatial} object of type "bym2".
+#' @return A \code{spjam_spatial} object of type "bym2".
 #'
 #' @export
 spatial_bym2 <- function(adjacency = NULL, phi_prior = NULL) {
@@ -93,12 +93,12 @@ spatial_bym2 <- function(adjacency = NULL, phi_prior = NULL) {
       adjacency = adjacency,
       phi_prior = phi_prior
     ),
-    class = c("scatr_spatial_bym2", "scatr_spatial")
+    class = c("spjam_spatial_bym2", "spjam_spatial")
   )
 }
 
 #' @export
-print.scatr_spatial <- function(x, ...) {
-  cat("scatR spatial specification:", x$type, "\n")
+print.spjam_spatial <- function(x, ...) {
+  cat("spjam spatial specification:", x$type, "\n")
   invisible(x)
 }

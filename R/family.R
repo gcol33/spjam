@@ -8,15 +8,15 @@
 #'   \code{"zi_poisson"}, \code{"zi_negbin"}.
 #' @param link Link function. If NULL, uses the canonical link.
 #'
-#' @return A \code{scatr_family} object.
+#' @return A \code{spjam_family} object.
 #'
 #' @export
 #'
 #' @examples
-#' scatr_family("poisson")
-#' scatr_family("negbin")
-#' scatr_family("binomial", link = "probit")
-scatr_family <- function(family = c("poisson", "negbin", "binomial",
+#' spjam_family("poisson")
+#' spjam_family("negbin")
+#' spjam_family("binomial", link = "probit")
+spjam_family <- function(family = c("poisson", "negbin", "binomial",
                                      "tweedie", "zi_poisson", "zi_negbin"),
                           link = NULL) {
   family <- match.arg(family)
@@ -39,13 +39,13 @@ scatr_family <- function(family = c("poisson", "negbin", "binomial",
       link = link,
       zero_inflated = grepl("^zi_", family)
     ),
-    class = "scatr_family"
+    class = "spjam_family"
   )
 }
 
 #' @export
-print.scatr_family <- function(x, ...) {
-  cat("scatR family:", x$family, "(link =", x$link, ")\n")
+print.spjam_family <- function(x, ...) {
+  cat("spjam family:", x$family, "(link =", x$link, ")\n")
   invisible(x)
 }
 

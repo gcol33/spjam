@@ -2,13 +2,13 @@
 // Spatial prior precision structures (ICAR, BYM2, GP, SPDE)
 // Adapted from numdenom v1.3.0 laplace_core.cpp + hmc_gp.h
 
-#ifndef SCATR_SPATIAL_PRECISION_H
-#define SCATR_SPATIAL_PRECISION_H
+#ifndef SPJAM_SPATIAL_PRECISION_H
+#define SPJAM_SPATIAL_PRECISION_H
 
 #include <vector>
 #include <cmath>
 
-namespace scatr {
+namespace spjam {
 
 // =====================================================================
 // ICAR prior: x' Q x where Q = diag(n_neighbors) - Adjacency
@@ -237,6 +237,6 @@ inline void spde_gradient(const double* x, double* grad, int n,
   }
 }
 
-} // namespace scatr
+} // namespace spjam
 
-#endif // SCATR_SPATIAL_PRECISION_H
+#endif // SPJAM_SPATIAL_PRECISION_H

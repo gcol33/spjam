@@ -18,7 +18,7 @@
 #' When \eqn{\beta_{share} \neq 0}, the ecological and sampling processes
 #' share spatial structure, indicating preferential sampling.
 #'
-#' @return A \code{scatr_latent} object of type "shared".
+#' @return A \code{spjam_latent} object of type "shared".
 #'
 #' @export
 latent_shared <- function(prior = NULL, constrain_positive = FALSE) {
@@ -28,7 +28,7 @@ latent_shared <- function(prior = NULL, constrain_positive = FALSE) {
       prior = prior,
       constrain_positive = constrain_positive
     ),
-    class = c("scatr_latent_shared", "scatr_latent")
+    class = c("spjam_latent_shared", "spjam_latent")
   )
 }
 
@@ -39,7 +39,7 @@ latent_shared <- function(prior = NULL, constrain_positive = FALSE) {
 #' no shared structure. Use this as a comparison model to assess whether
 #' preferential sampling correction matters.
 #'
-#' @return A \code{scatr_latent} object of type "independent".
+#' @return A \code{spjam_latent} object of type "independent".
 #'
 #' @export
 latent_independent <- function() {
@@ -47,7 +47,7 @@ latent_independent <- function() {
     list(
       type = "independent"
     ),
-    class = c("scatr_latent_independent", "scatr_latent")
+    class = c("spjam_latent_independent", "spjam_latent")
   )
 }
 
@@ -61,7 +61,7 @@ latent_independent <- function() {
 #' @param rho_prior Prior on the correlation coefficient. Default is
 #'   uniform on (-1, 1).
 #'
-#' @return A \code{scatr_latent} object of type "correlated".
+#' @return A \code{spjam_latent} object of type "correlated".
 #'
 #' @export
 latent_correlated <- function(rho_prior = NULL) {
@@ -70,12 +70,12 @@ latent_correlated <- function(rho_prior = NULL) {
       type = "correlated",
       rho_prior = rho_prior
     ),
-    class = c("scatr_latent_correlated", "scatr_latent")
+    class = c("spjam_latent_correlated", "spjam_latent")
   )
 }
 
 #' @export
-print.scatr_latent <- function(x, ...) {
-  cat("scatR latent structure:", x$type, "\n")
+print.spjam_latent <- function(x, ...) {
+  cat("spjam latent structure:", x$type, "\n")
   invisible(x)
 }

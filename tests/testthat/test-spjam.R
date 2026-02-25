@@ -1,4 +1,4 @@
-test_that("scatr() fits a basic Poisson GP model", {
+test_that("spjam() fits a basic Poisson GP model", {
   set.seed(123)
   n <- 30
   dat <- data.frame(
@@ -8,11 +8,11 @@ test_that("scatr() fits a basic Poisson GP model", {
     y = runif(n, 0, 5)
   )
 
-  fit <- scatr(
+  fit <- spjam(
     abundance ~ elevation,
     data = dat,
     locations = ~ x + y,
-    family = scatr_family("poisson"),
+    family = spjam_family("poisson"),
     spatial = spatial_gp(nu = 1.5),
     shared = latent_shared(),
     backend = "laplace",
@@ -24,7 +24,7 @@ test_that("scatr() fits a basic Poisson GP model", {
     )
   )
 
-  expect_s3_class(fit, "scatr_fit")
+  expect_s3_class(fit, "spjam_fit")
   expect_equal(fit$backend, "laplace")
   expect_equal(fit$n_obs, n)
   expect_equal(nrow(fit$draws), 100)
@@ -33,7 +33,7 @@ test_that("scatr() fits a basic Poisson GP model", {
   expect_true(all(is.finite(fit$draws[, seq_len(fit$p_eco)])))
 })
 
-test_that("scatr() works with latent_independent()", {
+test_that("spjam() works with latent_independent()", {
   set.seed(456)
   n <- 20
   dat <- data.frame(
@@ -42,7 +42,7 @@ test_that("scatr() works with latent_independent()", {
     y = runif(n, 0, 3)
   )
 
-  fit <- scatr(
+  fit <- spjam(
     abundance ~ 1,
     data = dat,
     locations = ~ x + y,
@@ -56,28 +56,28 @@ test_that("scatr() works with latent_independent()", {
     )
   )
 
-  expect_s3_class(fit, "scatr_fit")
+  expect_s3_class(fit, "spjam_fit")
   # Independent model has fewer parameters (no shared field)
   expect_equal(fit$shared$type, "independent")
 })
 
-test_that("scatr() rejects HMC backend", {
+test_that("spjam() rejects HMC backend", {
   dat <- data.frame(abundance = rpois(10, 5), x = 1:10, y = 1:10)
   expect_error(
-    scatr(abundance ~ 1, data = dat, locations = ~ x + y, backend = "hmc"),
+    spjam(abundance ~ 1, data = dat, locations = ~ x + y, backend = "hmc"),
     "HMC backend not yet implemented"
   )
 })
 
-test_that("scatr() validates inputs", {
+test_that("spjam() validates inputs", {
   expect_error(
-    scatr(abundance ~ 1, data = "not a data frame", locations = ~ x + y),
+    spjam(abundance ~ 1, data = "not a data frame", locations = ~ x + y),
     "must be a data.frame"
   )
 
   dat <- data.frame(abundance = 1:5, x = 1:5, y = 1:5)
   expect_error(
-    scatr(abundance ~ missing_var, data = dat, locations = ~ x + y),
+    spjam(abundance ~ missing_var, data = dat, locations = ~ x + y),
     "not found in data"
   )
 })
@@ -91,7 +91,7 @@ test_that("print and summary methods work", {
     y = runif(n, 0, 3)
   )
 
-  fit <- scatr(
+  fit <- spjam(
     abundance ~ 1,
     data = dat,
     locations = ~ x + y,
@@ -99,7 +99,7 @@ test_that("print and summary methods work", {
     control = list(max_outer_iter = 5, n_samples = 50, verbose = FALSE)
   )
 
-  expect_output(print(fit), "scatR model fit")
+  expect_output(print(fit), "spjam model fit")
   expect_output(summary(fit), "Ecological process")
 })
 
@@ -113,7 +113,7 @@ test_that("coef and logLik methods work", {
     y = runif(n, 0, 3)
   )
 
-  fit <- scatr(
+  fit <- spjam(
     abundance ~ elevation,
     data = dat,
     locations = ~ x + y,

@@ -1,4 +1,4 @@
-// scatr_exports.cpp
+// spjam_exports.cpp
 // Rcpp export wrappers for joint Laplace functions
 
 #include "laplace_joint.h"
@@ -45,16 +45,16 @@ Rcpp::List cpp_joint_laplace_fit(
     double tol
 ) {
   // Build layout
-  scatr::JointParamLayout layout;
+  spjam::JointParamLayout layout;
   layout.p_eco = p_eco;
   layout.p_samp = p_samp;
   layout.n_spatial = n_spatial;
-  layout.latent_type = static_cast<scatr::LatentType>(latent_type);
+  layout.latent_type = static_cast<spjam::LatentType>(latent_type);
 
   layout.beta_eco_start = 0;
   layout.beta_samp_start = p_eco;
 
-  if (latent_type == scatr::LATENT_SHARED) {
+  if (latent_type == spjam::LATENT_SHARED) {
     layout.s_shared_start = p_eco + p_samp;
     layout.s_eco_start = p_eco + p_samp + n_spatial;
     layout.s_samp_start = p_eco + p_samp + 2 * n_spatial;
@@ -116,7 +116,7 @@ Rcpp::List cpp_joint_laplace_fit(
   std::vector<double> sqpv(spde_Q_samp_vals.begin(), spde_Q_samp_vals.end());
 
   // Run joint Laplace
-  scatr::JointLaplaceResult res = scatr::joint_laplace_mode(
+  spjam::JointLaplaceResult res = spjam::joint_laplace_mode(
     y_vec, nt_vec, X_eco_flat, family, phi_overdispersion,
     Z_samp_flat, Z_quad_flat, qw_vec, qs_vec,
     spatial_type, os_vec,

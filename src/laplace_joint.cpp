@@ -14,7 +14,7 @@
 
 using namespace Rcpp;
 
-namespace scatr {
+namespace spjam {
 
 JointLaplaceResult joint_laplace_mode(
     const std::vector<int>& y,
@@ -85,7 +85,7 @@ JointLaplaceResult joint_laplace_mode(
       int si = obs_spatial_idx[i];
 
       // Linear predictor: eta_eco = X_eco * beta_eco + S_shared[si] + S_eco[si]
-      double eta_eco = scatr_linalg::dot_product(
+      double eta_eco = spjam_linalg::dot_product(
         &X_eco_flat[i * p_eco], beta_eco, p_eco);
       if (has_shared) eta_eco += S_shared[si];
       eta_eco += S_eco[si];
@@ -158,7 +158,7 @@ JointLaplaceResult joint_laplace_mode(
       int si = obs_spatial_idx[i];
 
       // eta_samp = Z_samp * beta_samp + beta_share * S_shared[si] + S_samp[si]
-      double eta_samp = scatr_linalg::dot_product(
+      double eta_samp = spjam_linalg::dot_product(
         &Z_samp_flat[i * p_samp], beta_samp, p_samp);
       if (has_shared) eta_samp += beta_share * S_shared[si];
       eta_samp += S_samp[si];
@@ -184,12 +184,12 @@ JointLaplaceResult joint_laplace_mode(
     for (int q = 0; q < N_quad; q++) {
       int sq = quad_spatial_idx[q];
 
-      double eta_quad = scatr_linalg::dot_product(
+      double eta_quad = spjam_linalg::dot_product(
         &Z_quad_flat[q * p_samp], beta_samp, p_samp);
       if (has_shared) eta_quad += beta_share * S_shared[sq];
       eta_quad += S_samp[sq];
 
-      double lam_q = scatr_linalg::safe_exp(eta_quad);
+      double lam_q = spjam_linalg::safe_exp(eta_quad);
       double wlam = quad_weights[q] * lam_q;
 
       // Gradient: -w_q * exp(eta_q) * d(eta_q)/d(param)
@@ -379,10 +379,10 @@ JointLaplaceResult joint_laplace_mode(
     // ==================================================================
     std::vector<double> L(n_x * n_x);
     double log_det;
-    scatr_linalg::cholesky_dense(H_flat, L, log_det, n_x);
+    spjam_linalg::cholesky_dense(H_flat, L, log_det, n_x);
 
     std::vector<double> delta(n_x);
-    scatr_linalg::solve_cholesky(L, grad, delta, n_x);
+    spjam_linalg::solve_cholesky(L, grad, delta, n_x);
 
     // Check for NaN/Inf
     double max_delta = 0.0;
@@ -440,7 +440,7 @@ JointLaplaceResult joint_laplace_mode(
   double log_lik_eco = 0.0;
   for (int i = 0; i < N; i++) {
     int si = obs_spatial_idx[i];
-    double eta_eco = scatr_linalg::dot_product(
+    double eta_eco = spjam_linalg::dot_product(
       &X_eco_flat[i * p_eco], beta_eco_final, p_eco);
     if (has_shared) eta_eco += S_shared_final[si];
     eta_eco += S_eco_final[si];
@@ -483,7 +483,7 @@ JointLaplaceResult joint_laplace_mode(
   double log_lik_samp = 0.0;
   for (int i = 0; i < N; i++) {
     int si = obs_spatial_idx[i];
-    double eta_samp = scatr_linalg::dot_product(
+    double eta_samp = spjam_linalg::dot_product(
       &Z_samp_flat[i * p_samp], beta_samp_final, p_samp);
     if (has_shared) eta_samp += beta_share * S_shared_final[si];
     eta_samp += S_samp_final[si];
@@ -492,12 +492,12 @@ JointLaplaceResult joint_laplace_mode(
 
   for (int q = 0; q < N_quad; q++) {
     int sq = quad_spatial_idx[q];
-    double eta_quad = scatr_linalg::dot_product(
+    double eta_quad = spjam_linalg::dot_product(
       &Z_quad_flat[q * p_samp], beta_samp_final, p_samp);
     if (has_shared) eta_quad += beta_share * S_shared_final[sq];
     eta_quad += S_samp_final[sq];
 
-    double lam_q = scatr_linalg::safe_exp(eta_quad);
+    double lam_q = spjam_linalg::safe_exp(eta_quad);
     double wlam = quad_weights[q] * lam_q;
     log_lik_samp -= wlam;  // Negative integral
 
@@ -610,7 +610,7 @@ JointLaplaceResult joint_laplace_mode(
   // Final Cholesky
   std::vector<double> L_final(n_x * n_x);
   double log_det_final;
-  scatr_linalg::cholesky_dense(H_flat, L_final, log_det_final, n_x);
+  spjam_linalg::cholesky_dense(H_flat, L_final, log_det_final, n_x);
 
   // Log prior for spatial effects
   double log_prior_spatial = 0.0;
@@ -684,4 +684,4 @@ JointLaplaceResult joint_laplace_mode(
   return result;
 }
 
-} // namespace scatr
+} // namespace spjam

@@ -12,7 +12,7 @@ prior_half_cauchy(location = 0, scale = 1)
 \item{scale}{Scale parameter.}
 }
 \value{
-A \code{scatr_prior} object.
+A \code{spjam_prior} object.
 }
 \description{
 Half-Cauchy Prior

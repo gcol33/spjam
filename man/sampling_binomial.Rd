@@ -12,7 +12,7 @@ sampling_binomial(grid = NULL, effort = NULL)
 \item{effort}{Optional known effort variable name in data.}
 }
 \value{
-A \code{scatr_sampling} object of type "binomial".
+A \code{spjam_sampling} object of type "binomial".
 }
 \description{
 Specifies a binomial model for grid-based sampling effort, where each

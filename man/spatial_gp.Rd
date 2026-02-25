@@ -14,7 +14,7 @@ spatial_gp(range_prior = NULL, sigma_prior = NULL, nu = 1.5)
 \item{nu}{Smoothness parameter (0.5, 1.5, or 2.5). Default 1.5.}
 }
 \value{
-A \code{scatr_spatial} object of type "gp".
+A \code{spjam_spatial} object of type "gp".
 }
 \description{
 Specifies a Gaussian process spatial effect with Matérn covariance.

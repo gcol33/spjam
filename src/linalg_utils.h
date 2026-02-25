@@ -1,16 +1,16 @@
 // linalg_utils.h
-// Linear algebra utilities for scatR Laplace engine
+// Linear algebra utilities for spjam Laplace engine
 // Adapted from numdenom v1.3.0 linalg_fast.h
 
-#ifndef SCATR_LINALG_UTILS_H
-#define SCATR_LINALG_UTILS_H
+#ifndef SPJAM_LINALG_UTILS_H
+#define SPJAM_LINALG_UTILS_H
 
 #include <vector>
 #include <cmath>
 #include <cstring>
 #include <algorithm>
 
-namespace scatr_linalg {
+namespace spjam_linalg {
 
 // Numerically safe exp (clamp to prevent overflow)
 inline double safe_exp(double x) {
@@ -149,6 +149,6 @@ inline void solve_cholesky(const std::vector<double>& L,
   solve_upper_dense(L, z, x, n);
 }
 
-} // namespace scatr_linalg
+} // namespace spjam_linalg
 
-#endif // SCATR_LINALG_UTILS_H
+#endif // SPJAM_LINALG_UTILS_H

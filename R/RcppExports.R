@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 cpp_joint_laplace_fit <- function(y, n_trials, X_eco, family, phi_overdispersion, Z_samp, Z_quad, quad_weights, quad_spatial_idx, spatial_type, obs_spatial_idx, gp_L_shared_flat, gp_L_eco_flat, gp_L_samp_flat, adj_row_ptr, adj_col_idx, n_neighbors_vec, tau_shared, tau_eco, tau_samp, spde_Q_row_ptr, spde_Q_col_idx, spde_Q_shared_vals, spde_Q_eco_vals, spde_Q_samp_vals, latent_type, beta_share, p_eco, p_samp, n_spatial, tau_beta, max_iter, tol) {
-    .Call(`_scatR_cpp_joint_laplace_fit`, y, n_trials, X_eco, family, phi_overdispersion, Z_samp, Z_quad, quad_weights, quad_spatial_idx, spatial_type, obs_spatial_idx, gp_L_shared_flat, gp_L_eco_flat, gp_L_samp_flat, adj_row_ptr, adj_col_idx, n_neighbors_vec, tau_shared, tau_eco, tau_samp, spde_Q_row_ptr, spde_Q_col_idx, spde_Q_shared_vals, spde_Q_eco_vals, spde_Q_samp_vals, latent_type, beta_share, p_eco, p_samp, n_spatial, tau_beta, max_iter, tol)
+    .Call(`_spjam_cpp_joint_laplace_fit`, y, n_trials, X_eco, family, phi_overdispersion, Z_samp, Z_quad, quad_weights, quad_spatial_idx, spatial_type, obs_spatial_idx, gp_L_shared_flat, gp_L_eco_flat, gp_L_samp_flat, adj_row_ptr, adj_col_idx, n_neighbors_vec, tau_shared, tau_eco, tau_samp, spde_Q_row_ptr, spde_Q_col_idx, spde_Q_shared_vals, spde_Q_eco_vals, spde_Q_samp_vals, latent_type, beta_share, p_eco, p_samp, n_spatial, tau_beta, max_iter, tol)
 }
 
 cpp_joint_laplace_sample <- function(mode, L_flat, n_params, n_samples, seed) {
-    .Call(`_scatR_cpp_joint_laplace_sample`, mode, L_flat, n_params, n_samples, seed)
+    .Call(`_spjam_cpp_joint_laplace_sample`, mode, L_flat, n_params, n_samples, seed)
 }
 
-scatr_hmc_placeholder <- function() {
-    .Call(`_scatR_scatr_hmc_placeholder`)
+spjam_hmc_placeholder <- function() {
+    .Call(`_spjam_spjam_hmc_placeholder`)
 }
 

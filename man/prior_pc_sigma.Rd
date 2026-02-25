@@ -12,7 +12,7 @@ prior_pc_sigma(U, alpha = 0.5)
 \item{alpha}{Tail probability.}
 }
 \value{
-A \code{scatr_prior} object.
+A \code{spjam_prior} object.
 }
 \description{
 Penalized complexity prior for marginal standard deviation.
