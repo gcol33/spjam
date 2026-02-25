@@ -1,4 +1,4 @@
-# spjam
+# spjam <sub>**Sp**atial **J**oint **A**ttribution **M**odels</sub>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
