@@ -50,5 +50,5 @@ print.scatr_formula <- function(x, ...) {
   invisible(x)
 }
 
-# Null coalescing operator
+# Null coalescing operator (canonical definition)
 `%||%` <- function(x, y) if (is.null(x)) y else x

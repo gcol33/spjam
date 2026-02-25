@@ -1,5 +1,7 @@
 // scatR: Joint Spatial Modelling Under Preferential Sampling
-// C++ initialization and Rcpp exports
+// C++ initialization and registration
+// Note: Rcpp::compileAttributes() generates RcppExports.cpp with actual registrations.
+// This file provides the R_init hook and any non-exported helpers.
 
 #include <Rcpp.h>
 
@@ -8,16 +10,6 @@
 Rcpp::List scatr_hmc_placeholder() {
     return Rcpp::List::create(
         Rcpp::Named("status") = "not_implemented",
-        Rcpp::Named("message") = "HMC sampler not yet implemented"
+        Rcpp::Named("message") = "HMC sampler not yet implemented. Use backend = 'laplace'."
     );
-}
-
-// Registration
-static const R_CallMethodDef CallEntries[] = {
-    {NULL, NULL, 0}
-};
-
-RcppExport void R_init_scatR(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
 }

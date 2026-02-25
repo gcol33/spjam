@@ -49,5 +49,4 @@ print.scatr_family <- function(x, ...) {
   invisible(x)
 }
 
-# Null coalescing
-`%||%` <- function(x, y) if (is.null(x)) y else x
+# %||% defined in formula.R

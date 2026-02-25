@@ -84,8 +84,82 @@ scatr <- function(formula,
                   control = list(),
                   ...) {
 
+  # Match backend
+  backend <- match.arg(backend)
 
-  # Placeholder implementation
-  stop("scatr() not yet implemented. See roadmap for development plan.",
-       call. = FALSE)
+  # Build scatr_formula if raw formula provided
+  if (!inherits(formula, "scatr_formula")) {
+    formula <- scatr_formula(formula, sampling = sampling)
+  }
+
+  # Default sampling spec if not provided
+  sampling_spec <- if (inherits(sampling, "scatr_sampling")) {
+    sampling
+  } else {
+    sampling_lgcp()
+  }
+
+  # Validate all inputs
+  validate_scatr_inputs(formula, data, locations, family, spatial, shared,
+                         sampling_spec)
+
+  # Prepare model data (design matrices, locations, quadrature)
+  model_data <- prepare_model_data(formula, data, locations, family,
+                                    sampling_spec)
+
+  # Prepare spatial structure (GP Cholesky, ICAR CSR, SPDE matrices)
+  spatial_info <- prepare_spatial_structure(spatial, model_data)
+
+  # For areal models, override n_spatial from adjacency matrix
+
+  if (inherits(spatial, "scatr_spatial_car") ||
+      inherits(spatial, "scatr_spatial_bym2")) {
+    model_data$n_spatial <- spatial_info$n_spatial
+    # Remap obs to spatial units (must be provided by user for areal data)
+    # For now, assume 1:1 mapping (each observation is one area)
+    if (length(model_data$obs_spatial_idx) != nrow(data)) {
+      model_data$obs_spatial_idx <- seq(0L, nrow(data) - 1L)
+    }
+  }
+
+  # Dispatch to backend
+  if (backend == "hmc") {
+    stop("HMC backend not yet implemented. Use backend = 'laplace'.",
+         call. = FALSE)
+  }
+
+  if (backend == "auto") {
+    backend <- "laplace"
+  }
+
+  n_samples <- control$n_samples %||% as.integer(chains * (iter - warmup) / thin)
+  verbose <- control$verbose %||% TRUE
+
+  laplace_result <- fit_laplace_joint(
+    model_data = model_data,
+    spatial_info = spatial_info,
+    priors = priors,
+    shared = shared,
+    family = family,
+    n_samples = n_samples,
+    seed = seed,
+    control = control,
+    verbose = verbose
+  )
+
+  # Construct scatr_fit object
+  new_scatr_fit(
+    laplace_result = laplace_result,
+    formula = formula,
+    family = family,
+    spatial = spatial,
+    shared = shared,
+    priors = priors,
+    data = data,
+    locations = locations,
+    model_data = model_data,
+    spatial_info = spatial_info,
+    backend = backend,
+    seed = seed
+  )
 }
