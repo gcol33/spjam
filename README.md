@@ -85,7 +85,7 @@ The result is a sampling-adjusted ecological surface. This is analogous to how o
 ## Installation
 
 ```r
-# install.packages("pak")
+install.packages("pak")
 pak::pak("gcol33/spjam")
 ```
 
