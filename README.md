@@ -1,6 +1,6 @@
 # spjam
 
-*the map shows where people looked*
+*species maps shaped by where people looked*
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml)
