@@ -11,6 +11,15 @@
 
 A spatial dataset records where observers went, not where the process lives. When the two are correlated, a standard spatial model lets its random effects soak up the sampling pattern and hands you a map of effort dressed as ecology. `spjam` fits both surfaces in one likelihood, ties them with a shared latent field, and estimates how strongly sampling tracks the process, so the ecological surface is what remains after the sampling is accounted for.
 
+## Installation
+
+```r
+install.packages("pak")
+pak::pak("gcol33/spjam")
+```
+
+## Quick start
+
 ```r
 library(spjam)
 
@@ -78,13 +87,6 @@ logLik(fit_indep)
 | Best for | Prediction at observed sites | Maps meant to read as the process |
 
 The split mirrors how occupancy models formalise detection bias, one level up: at the choice of where to sample rather than what was detected once there.
-
-## Installation
-
-```r
-install.packages("pak")
-pak::pak("gcol33/spjam")
-```
 
 ## Status
 
