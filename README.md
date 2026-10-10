@@ -4,6 +4,7 @@
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gcol33/spjam/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/gcol33/spjam/graph/badge.svg)](https://app.codecov.io/gh/gcol33/spjam)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Joint spatial models that estimate the ecological process and the sampling process at once, coupled through a shared latent field.**
