@@ -11,3 +11,5 @@
 ^\.vscode$
 ^CLAUDE\.md$
 ^cran-comments\.md$
+^\.run.*$
+^sidecars$
