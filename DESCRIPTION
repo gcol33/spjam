@@ -2,7 +2,8 @@ Package: spjam
 Title: Joint Spatial Modelling of Ecological Processes Under Preferential Sampling
 Version: 0.0.1
 Authors@R:
-    person("Gilles", "Colling", , "gilles.colling05@gmail.com", role = c("aut", "cre", "cph"))
+    person("Gilles", "Colling", , "gilles.colling051@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0003-3070-6066"))
 Description: A Bayesian spatial modelling pipeline that separates ecological
     signal from sampling-driven scatter under preferential sampling. Implements
     joint hierarchical models where sampling locations and ecological processes
