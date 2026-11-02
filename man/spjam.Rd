@@ -14,7 +14,7 @@ spjam(
   sampling_spatial = NULL,
   shared = latent_shared(),
   priors = spjam_priors(),
-  backend = c("hmc", "laplace", "auto"),
+  backend = c("laplace", "auto", "hmc"),
   chains = 4,
   iter = 2000,
   warmup = iter/2,
@@ -52,8 +52,9 @@ inherits from \code{spatial}.}
 
 \item{priors}{Prior specifications. See \code{\link{spjam_priors}}.}
 
-\item{backend}{Inference backend: \code{"hmc"} (default), \code{"laplace"},
-or \code{"auto"}.}
+\item{backend}{Inference backend: \code{"laplace"} (default) or
+\code{"auto"}, which resolves to \code{"laplace"}. \code{"hmc"} is
+accepted but stops with an error until the HMC backend exists.}
 
 \item{chains}{Number of MCMC chains. Default 4.}
 

@@ -16,7 +16,6 @@ BugReports: https://github.com/gcol33/spjam/issues
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -40,3 +39,4 @@ LinkingTo:
     Rcpp,
     RcppEigen
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

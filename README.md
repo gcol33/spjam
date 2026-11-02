@@ -37,10 +37,9 @@ spjam supports:
 - **Sampling models.** Sampling as a log-Gaussian Cox process, as fixed
   points or as a binomial process.
 
-The default Laplace backend optimises the spatial hyperparameters with
-L-BFGS-B, finds the mode of the latent field with a Newton-Raphson loop
-in C++ (RcppEigen), and draws from the Gaussian approximation at the
-mode.
+The Laplace backend optimises the spatial hyperparameters with L-BFGS-B,
+finds the mode of the latent field with a Newton-Raphson loop in C++
+(RcppEigen), and draws from the Gaussian approximation at the mode.
 
 ## Installation
 
@@ -51,11 +50,11 @@ backend is the supported path
 The package compiles C++ code. Install the build tools for your
 operating system first:
 
-| Operating system | Build tools                                              |
-|------------------|----------------------------------------------------------|
-| Windows          | [Rtools](https://cran.r-project.org/bin/windows/Rtools/) |
-| macOS            | Run `xcode-select --install` in Terminal                 |
-| Debian / Ubuntu  | Install `r-base-dev`                                     |
+| Operating system | Build tools |
+|----|----|
+| Windows | [Rtools](https://cran.r-project.org/bin/windows/Rtools/) matching your R version |
+| macOS | Run `xcode-select --install` in Terminal |
+| Debian / Ubuntu | Install `r-base-dev` |
 
 Check that R can find the compiler:
 
@@ -77,13 +76,14 @@ libraries that R itself uses, so no further system library is needed.
 ## Usage
 
 1.  Fit the model with `spjam()`: a formula for the ecological response,
-    the data, and the columns that hold the coordinates.
+    the data, and the names of the coordinate columns.
 2.  Add a formula for the sampling process with `sampling` when
     covariates of observer effort are known.
 3.  Compare a shared fit with an independent one through `shared`.
 
 The input is a data frame with one row per observation and coordinate
-columns named in `locations`.
+columns named in `locations`. The Laplace backend is the default and
+the only implemented one; `backend = "hmc"` stops with a message.
 
 ``` r
 library(spjam)

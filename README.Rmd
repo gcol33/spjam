@@ -26,7 +26,7 @@ When observers go where the species is common, sampling is preferential, and a s
 - **Choice of coupling.** A shared field that estimates preferential sampling, independent fields for the comparison fit, or distinct fields with an estimated correlation.
 - **Sampling models.** Sampling as a log-Gaussian Cox process, as fixed points or as a binomial process.
 
-The default Laplace backend optimises the spatial hyperparameters with L-BFGS-B, finds the mode of the latent field with a Newton-Raphson loop in C++ (RcppEigen), and draws from the Gaussian approximation at the mode.
+The Laplace backend optimises the spatial hyperparameters with L-BFGS-B, finds the mode of the latent field with a Newton-Raphson loop in C++ (RcppEigen), and draws from the Gaussian approximation at the mode.
 
 ## Installation
 
@@ -36,7 +36,7 @@ The package compiles C++ code. Install the build tools for your operating system
 
 | Operating system | Build tools |
 |---|---|
-| Windows | [Rtools](https://cran.r-project.org/bin/windows/Rtools/) |
+| Windows | [Rtools](https://cran.r-project.org/bin/windows/Rtools/) matching your R version |
 | macOS | Run `xcode-select --install` in Terminal |
 | Debian / Ubuntu | Install `r-base-dev` |
 
@@ -57,11 +57,11 @@ The code is compiled as C++17. The Eigen headers come from RcppEigen, installed 
 
 ## Usage
 
-1. Fit the model with `spjam()`: a formula for the ecological response, the data, and the columns that hold the coordinates.
+1. Fit the model with `spjam()`: a formula for the ecological response, the data, and the names of the coordinate columns.
 2. Add a formula for the sampling process with `sampling` when covariates of observer effort are known.
 3. Compare a shared fit with an independent one through `shared`.
 
-The input is a data frame with one row per observation and coordinate columns named in `locations`.
+The input is a data frame with one row per observation and coordinate columns named in `locations`. At this version every fit passes `backend = "laplace"`; the HMC backend named as the default is on the roadmap and stops with a message.
 
 ```{r fit, results = "hide", message = FALSE}
 library(spjam)

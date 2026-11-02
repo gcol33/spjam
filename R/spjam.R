@@ -20,8 +20,9 @@
 #' @param shared Shared latent structure specification. See
 #'   \code{\link{latent_shared}}.
 #' @param priors Prior specifications. See \code{\link{spjam_priors}}.
-#' @param backend Inference backend: \code{"hmc"} (default), \code{"laplace"},
-#'   or \code{"auto"}.
+#' @param backend Inference backend: \code{"laplace"} (default) or
+#'   \code{"auto"}, which resolves to \code{"laplace"}. \code{"hmc"} is
+#'   accepted but stops with an error until the HMC backend exists.
 #' @param chains Number of MCMC chains. Default 4.
 #' @param iter Number of iterations per chain. Default 2000.
 #' @param warmup Number of warmup iterations. Default \code{iter / 2}.
@@ -73,7 +74,7 @@ spjam <- function(formula,
                   sampling_spatial = NULL,
                   shared = latent_shared(),
                   priors = spjam_priors(),
-                  backend = c("hmc", "laplace", "auto"),
+                  backend = c("laplace", "auto", "hmc"),
                   chains = 4,
                   iter = 2000,
                   warmup = iter / 2,
